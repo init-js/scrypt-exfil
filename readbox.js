@@ -4,6 +4,7 @@ var parentBox = document.getElementById("parent");
 var entryBox = document.getElementById("entrybox");
 var valueBox = document.getElementById("valuebox");
 var inputBox = document.getElementById("inputbox");
+var activateBox = document.getElementById("activate");
 
 function isChildFrom(node, parent) {
     while (node !== null && node.parentNode) {
@@ -28,5 +29,18 @@ function keypress(evt) {
     return false;
 }
 
+function steal() {
+
+
+}
+
+function activateTheft(evt) {
+    var box = evt.target;
+    var newSetting = box.checked;
+    if (newSetting) {
+        steal();
+    }
+}
+
 window.addEventListener("keypress", keypress, true);
-//window.addEventListener("change", contentChange, true);
+activateBox.addEventListener("change", activateTheft, true);
