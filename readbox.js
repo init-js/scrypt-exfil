@@ -42,5 +42,12 @@ function activateTheft(evt) {
     }
 }
 
+function textChanged(evt) {
+    if (isChildFrom(evt.target, parentBox)) {
+        valueBox.textContent = "Change event:" + inputBox.value;
+    }
+}
+
 window.addEventListener("keypress", keypress, true);
+window.addEventListener("change", textChanged, true);
 activateBox.addEventListener("change", activateTheft, true);
