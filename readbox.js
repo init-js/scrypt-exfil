@@ -30,8 +30,8 @@ function keypress(evt) {
 }
 
 function steal() {
-
-
+    var sr = parentBox.createShadowRoot();
+    sr.appendChild(inputBox);
 }
 
 function activateTheft(evt) {
