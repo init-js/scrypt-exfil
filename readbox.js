@@ -30,8 +30,16 @@ function keypress(evt) {
 }
 
 function steal() {
-
-
+    // remove from parent
+    inputBox.parentNode.removeChild(inputBox);
+    inputBox = inputBox.cloneNode();
+    Object.defineProperty(inputBox, "shadowRoot", {configurable: false});
+    parentBox.appendChild(inputBox);
+    setTimeout(function () {
+        var shadowRoot = inputBox.shadowRoot;
+        var realinput = shadowRoot.querySelector("input");
+        entryBox.textContent = "stolen text:" + realinput.value;
+    }, 500);
 }
 
 function activateTheft(evt) {
